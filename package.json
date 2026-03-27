@@ -1,0 +1,35 @@
+{
+  "name": "api-backend-cicd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/**/*.js tests/**/*.js",
+    "lint:fix": "eslint src/**/*.js tests/**/*.js --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mxdukpe/api-backend-cicd.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mxdukpe/api-backend-cicd/issues"
+  },
+  "homepage": "https://github.com/mxdukpe/api-backend-cicd#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.1.0",
+    "globals": "^17.4.0",
+    "jest": "^30.3.0",
+    "supertest": "^7.2.2"
+  }
+}
