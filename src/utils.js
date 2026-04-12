@@ -90,4 +90,31 @@ function clamp(value, min, max) {
     return value;
 }
 
-module.exports = { capitalize, calculateAverage, slugify, clamp };
+function sortStudents(students, sortBy, order = "asc") {
+    // Si l'entrée est vide ou null, on renvoie []
+    if (!students || !Array.isArray(students) || students.length === 0) {
+        return [];
+    }
+
+    // Copie du tableau pour ne pas muter l'original
+    return [...students].sort((a, b) => {
+        let valA = a[sortBy];
+        let valB = b[sortBy];
+
+        // Tri pour les chaînes de caractères (nom)
+        if (typeof valA === 'string' && typeof valB === 'string') {
+            if (order === 'desc') {
+                return valB.localeCompare(valA);
+            }
+            return valA.localeCompare(valB);
+        }
+
+        // Tri pour les nombres (age, grade)
+        if (order === 'desc') {
+            return valB - valA;
+        }
+        return valA - valB;
+    });
+}
+
+module.exports = { capitalize, calculateAverage, slugify, clamp, sortStudents };

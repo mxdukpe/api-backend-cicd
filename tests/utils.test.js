@@ -1,4 +1,4 @@
-const { capitalize, calculateAverage, slugify, clamp } = require('../src/utils');
+const { capitalize, calculateAverage, slugify, clamp, sortStudents } = require('../src/utils');
 
 describe('utils functions', () => {
 
@@ -59,6 +59,49 @@ describe('utils functions', () => {
         });
         it('should return 0 when clamp(0, 0, 0) is called', () => {
             expect(clamp(0, 0, 0)).toBe(0);
+        });
+    });
+        
+    describe('sortStudents', () => {
+        it('should sort students by grade ascending', () => {
+            const students = [
+                { name: 'Alice', grade: 15, age: 22 },
+                { name: 'Bob', grade: 10, age: 24 },
+                { name: 'Charlie', grade: 18, age: 20 }
+            ];
+            const sorted = sortStudents(students, 'grade', 'asc');
+            expect(sorted[0].name).toBe('Bob'); // grade 10
+            expect(sorted[1].name).toBe('Alice'); // grade 15
+            expect(sorted[2].name).toBe('Charlie'); // grade 18
+        });
+
+        it('should sort students by grade descending', () => {
+            const students = [
+                { name: 'Alice', grade: 15, age: 22 },
+                { name: 'Bob', grade: 10, age: 24 },
+                { name: 'Charlie', grade: 18, age: 20 }
+            ];
+            const sorted = sortStudents(students, 'grade', 'desc');
+            expect(sorted[0].name).toBe('Charlie'); // grade 18
+            expect(sorted[1].name).toBe('Alice'); // grade 15
+            expect(sorted[2].name).toBe('Bob'); // grade 10
+        });
+
+        it('should sort students by name ascending', () => {
+            const students = [
+                { name: 'Charlie', grade: 18, age: 20 },
+                { name: 'Alice', grade: 15, age: 22 },
+                { name: 'Bob', grade: 10, age: 24 }
+            ];
+            const sorted = sortStudents(students, 'name', 'asc');
+            expect(sorted[0].name).toBe('Alice');
+            expect(sorted[1].name).toBe('Bob');
+            expect(sorted[2].name).toBe('Charlie');
+        });
+
+        it('should return empty array for null or empty input', () => {
+            expect(sortStudents(null, 'name', 'asc')).toEqual([]);
+            expect(sortStudents([], 'name', 'asc')).toEqual([]);
         });
     });
 
